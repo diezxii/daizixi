@@ -43,3 +43,8 @@ git push：把本地的代码推送到 GitHub 上。
 
 第二段通过3~5迭代完成，通过直接在游戏里设置ai自动演示检验ai可以完成2048，无误
 
+<img width="1280" height="1280" alt="f62f309833f09783d6a88eae7158dc18" src="https://github.com/user-attachments/assets/c5ea1842-25e4-48d1-a820-2296a2cfb32b" />
+
+<img width="4096" height="3072" alt="1a1138b28fe53c294c6283f4273355d7" src="https://github.com/user-attachments/assets/3aface41-2a28-4ee0-b517-dd4e15521d27" />
+
+
