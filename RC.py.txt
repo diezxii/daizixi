@@ -1,0 +1,32 @@
+import matplotlib.pyplot as plt
+from PySpice.Spice.Netlist import Circuit
+from PySpice.Unit import *
+
+# 1. 建立 RC 低通滤波电路
+circuit = Circuit('RC Low Pass Filter')
+
+# 输入源：1kHz 正弦波，幅值 1V
+circuit.SinusoidalVoltageSource('input', 'in', circuit.gnd, amplitude=1@u_V, frequency=1@u_kHz)
+
+# 电阻 1kΩ，连接 in 和 out
+circuit.R(1, 'in', 'out', 1@u_kOhm)
+
+# 电容 1μF，连接 out 和 地
+circuit.C(1, 'out', circuit.gnd, 1@u_uF)
+
+# 2. 设置仿真
+simulator = circuit.simulator(temperature=25, nominal_temperature=25)
+
+# 瞬态分析：从 0 秒到 5 毫秒，步长 1 微秒
+analysis = simulator.transient(step_time=1@u_us, end_time=5@u_ms)
+
+# 3. 提取结果并画图
+plt.figure(figsize=(10, 6))
+plt.plot(analysis.time*1000, analysis['in'], label='输入电压 (Vin)')
+plt.plot(analysis.time*1000, analysis['out'], label='输出电压 (Vout)')
+plt.xlabel('时间 (ms)')
+plt.ylabel('电压 (V)')
+plt.title('RC 低通滤波电路 - 瞬态响应')
+plt.legend()
+plt.grid(True)
+plt.show()
